@@ -1,52 +1,43 @@
-﻿int[] counters = new int[10];
-int number = 4566;
-Console.WriteLine(number);
-string numberAsString = number.ToString();
-char[] signs = numberAsString.ToCharArray();
-foreach (char sign in signs)
+﻿using ChallengeApp;
+
+Employee employee1 = new Employee("Jan", "Kowalski", 40);
+Employee employee2 = new Employee("Marcin", "Zając", 25);
+Employee employee3 = new Employee("Ewelina", "Nowak", 35);
+
+employee1.AddRating(6);
+employee1.AddRating(8);
+employee1.AddRating(6);
+employee1.AddRating(9);
+employee1.AddRating(10);
+
+employee2.AddRating(2);
+employee2.AddRating(3);
+employee2.AddRating(3);
+employee2.AddRating(1);
+employee2.AddRating(2);
+
+employee3.AddRating(9);
+employee3.AddRating(9);
+employee3.AddRating(9);
+employee3.AddRating(9);
+employee3.AddRating(9);
+
+List<Employee> employees = new List<Employee>()
 {
-    if (sign == '0')
+    employee1, employee2, employee3
+};
+
+int bestRating = -1;
+Employee? employeeWithBestRating = null;
+
+
+foreach (var employee in employees)
+{
+    if (employee.Rating > bestRating)
     {
-        counters[0] ++;
-    }
-    else if (sign == '1') 
-    {
-        counters[1]++;
-    }
-    else if (sign == '2')
-    {
-        counters[2]++;
-    }
-    else if (sign == '3')
-    {
-        counters[3]++;
-    }
-    else if (sign == '4')
-    {
-        counters[4]++;
-    }
-    else if (sign == '5')
-    {
-        counters[5]++;
-    }
-    else if (sign == '6')
-    {
-        counters[6]++;
-    }
-    else if (sign == '7')
-    {
-        counters[7]++;
-    }
-    else if (sign == '8')
-    {
-        counters[8]++;
-    }
-    else if (sign == '9')
-    {
-        counters[9]++;
+        employeeWithBestRating = employee;
+        bestRating = employeeWithBestRating.Rating;
     }
 }
-for(var i=0; i<counters.Length; i++)
-{
-    Console.WriteLine(i+"->"+counters[i]);
-}
+
+Console.WriteLine(employeeWithBestRating.Name + " " + employeeWithBestRating.LastName + " - rating -> " + employeeWithBestRating.Rating);
